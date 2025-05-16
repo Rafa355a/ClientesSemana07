@@ -21,5 +21,21 @@ namespace CapaNegocio
         {
             dao.InsertarCustomer(customer);
         }
+
+        public void ModificarCustomer(Customer customer)
+        {
+            dao.ModificarCustomer(customer);
+        }
+
+        public void EliminarCustomer(int customerId)
+        {
+            dao.EliminarCustomer(customerId);
+        }
+
+        public bool ExisteNombre(string nombre)
+        {
+            var customers = dao.ListarCustomers();
+            return customers.Any(c => c.Name.ToLower() == nombre.ToLower());
+        }
     }
 }

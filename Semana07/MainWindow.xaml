@@ -5,17 +5,17 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Semana07"
         mc:Ignorable="d"
-        Title="MainWindow" Height="500" Width="800">
+        Title="MainWindow" Height="550" Width="800">
     <Grid Margin="10">
         <StackPanel>
-            <!-- Sección de búsqueda -->
+
+            <!-- Buscar -->
             <TextBlock Text="Buscar Clientes por Nombre:" FontWeight="Bold" Margin="0,0,0,5"/>
-            <TextBox x:Name="txtBuscar" Width="300" Margin="0,0,0,10"
-                     Height="25" VerticalAlignment="Top" />
+            <TextBox x:Name="txtBuscar" Width="300" Margin="0,0,0,10" Height="25" />
             <Button Content="Buscar" Width="100" Height="30" Click="BtnBuscar_Click" />
 
-            <!-- Sección para agregar nuevo cliente -->
-            <TextBlock Text="Agregar Nuevo Cliente:" FontWeight="Bold" Margin="0,15,0,5"/>
+            <!-- Agregar -->
+            <TextBlock Text="Agregar o Editar Cliente:" FontWeight="Bold" Margin="0,15,0,5"/>
             <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
                 <StackPanel>
                     <TextBlock Text="Nombre" Margin="5,0,5,2"/>
@@ -32,8 +32,20 @@
                 <Button Content="Agregar" Width="100" Margin="5" Click="BtnAgregar_Click"/>
             </StackPanel>
 
-            <!-- Tabla de resultados -->
-            <DataGrid x:Name="dgCustomers" AutoGenerateColumns="False" Height="300" Margin="0,10,0,0">
+            <!-- Botones de acción -->
+            <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+                <Button Content="Editar Seleccionado" Width="150" Margin="5" Click="BtnEditar_Click"/>
+                <Button Content="Eliminar Seleccionado" Width="150" Margin="5" Click="BtnEliminar_Click"/>
+            </StackPanel>
+
+            <!-- Tabla -->
+            <DataGrid x:Name="dgCustomers"
+                      AutoGenerateColumns="False"
+                      Height="300"
+                      Margin="0,10,0,0"
+                      SelectionMode="Single"
+                      SelectionUnit="FullRow"
+                      SelectionChanged="dgCustomers_SelectionChanged">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="ID" Binding="{Binding CustomerId}" Width="50"/>
                     <DataGridTextColumn Header="Nombre" Binding="{Binding Name}" Width="200"/>

@@ -52,5 +52,37 @@ namespace CapaDatos
                 cmd.ExecuteNonQuery();
             }
         }
+
+        public void ModificarCustomer(Customer customer)
+        {
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                SqlCommand cmd = new SqlCommand("sp_ModificarCustomer", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.Parameters.AddWithValue("@customer_id", customer.CustomerId);
+                cmd.Parameters.AddWithValue("@name", customer.Name);
+                cmd.Parameters.AddWithValue("@address", customer.Address);
+                cmd.Parameters.AddWithValue("@phone", customer.Phone);
+                cmd.Parameters.AddWithValue("@active", customer.Active);
+
+                conn.Open();
+                cmd.ExecuteNonQuery();
+            }
+        }
+
+        public void EliminarCustomer(int customerId)
+        {
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                SqlCommand cmd = new SqlCommand("sp_EliminarCustomer", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.Parameters.AddWithValue("@customer_id", customerId);
+
+                conn.Open();
+                cmd.ExecuteNonQuery();
+            }
+        }
     }
 }
